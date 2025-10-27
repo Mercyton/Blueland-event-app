@@ -8,7 +8,8 @@
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
     "db:studio": "prisma studio",
-    "db:reset": "prisma migrate reset"
+    "db:reset": "prisma migrate reset",
+    "db:seed": "bun prisma/seed.ts"
   },
   "dependencies": {
     "@elysiajs/cors": "^1.4.0",
