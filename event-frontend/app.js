@@ -128,7 +128,6 @@ class EventApp {
         
         const email = document.getElementById('signupEmail').value;
         const password = document.getElementById('signupPassword').value;
-        const role = document.getElementById('signupRole').value;
 
         if (!email || !password) {
             alert('Please fill in all fields');
@@ -142,7 +141,7 @@ class EventApp {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email, password, role })
+                body: JSON.stringify({ email, password })
             });
 
             console.log('Response status:', response.status);
