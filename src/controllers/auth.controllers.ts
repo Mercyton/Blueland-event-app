@@ -9,16 +9,8 @@ export const authControllers = {
     try {
       console.log('Signup attempt:', body)
 
-      const { email, password, role = 'ATTENDEE' } = body
-
-      const userCount = await prisma.user.count()
-      let assignedRole = role
-
-      if (userCount === 0) {
-        assignedRole = 'ADMIN'
-      } else if (role === 'ADMIN') {
-        return { error: 'Cannot register as an admin. Please choose another role.' }
-      }
+      const { email, password } = body
+      const assignedRole = 'ATTENDEE'
 
       const existingUser = await prisma.user.findUnique({ where: { email } })
       if (existingUser) {
