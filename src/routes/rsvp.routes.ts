@@ -3,5 +3,7 @@ import { rsvpControllers } from '../controllers/rsvp.controllers.js'
 import { authMiddleware } from '../middleware/auth.middleware.js'
 
 export default new Elysia()
-  .use(authMiddleware)
-  .post('/events/:id/rsvp', (context) => rsvpControllers.createRSVP(context))
+  .group('/events/:id/rsvp', (app) => app
+    .use(authMiddleware)
+    .post('/', (context) => rsvpControllers.createRSVP(context))
+  )
