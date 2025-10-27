@@ -1,6 +1,6 @@
 class EventApp {
     constructor() {
-        this.baseUrl = '';
+        this.baseUrl = '/api';
         this.token = localStorage.getItem('token');
         this.user = JSON.parse(localStorage.getItem('user') || 'null');
         
