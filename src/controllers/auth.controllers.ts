@@ -15,7 +15,10 @@ export const authControllers = {
       const existingUser = await prisma.user.findUnique({ where: { email } })
       if (existingUser) {
         console.log('User already exists:', email)
-        return { error: 'User already exists' }
+        return new Response(JSON.stringify({ error: 'User already exists' }), {
+          status: 409,
+          headers: { 'Content-Type': 'application/json' }
+        })
       }
 
       const hashedPassword = await bcrypt.hash(password, 10)
@@ -54,7 +57,10 @@ export const authControllers = {
 
     } catch (error: any) {
       console.error('Signup error:', error)
-      return { error: 'Internal server error: ' + error.message }
+      return new Response(JSON.stringify({ error: 'Internal server error' }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      })
     }
   },
 
@@ -71,14 +77,20 @@ export const authControllers = {
 
       if (!user) {
         console.log('User not found:', email)
-        return { error: 'Invalid credentials' }
+        return new Response(JSON.stringify({ error: 'Invalid credentials' }), {
+          status: 401,
+          headers: { 'Content-Type': 'application/json' }
+        })
       }
 
       // Check password
       const validPassword = await bcrypt.compare(password, user.password)
       if (!validPassword) {
         console.log('Invalid password for:', email)
-        return { error: 'Invalid credentials' }
+        return new Response(JSON.stringify({ error: 'Invalid credentials' }), {
+          status: 401,
+          headers: { 'Content-Type': 'application/json' }
+        })
       }
 
       // Generate JWT token
@@ -102,7 +114,10 @@ export const authControllers = {
 
     } catch (error: any) {
       console.error('Login error:', error)
-      return { error: 'Internal server error: ' + error.message }
+      return new Response(JSON.stringify({ error: 'Internal server error' }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      })
     }
   },
 
