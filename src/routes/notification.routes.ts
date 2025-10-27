@@ -3,6 +3,8 @@ import { notificationControllers } from '../controllers/notification.controllers
 import { authMiddleware } from '../middleware/auth.middleware.js'
 
 export default new Elysia()
-  .use(authMiddleware)
-  .get('/notifications', (context) => notificationControllers.getUserNotifications(context))
-  .put('/notifications/:id/read', (context) => notificationControllers.markAsRead(context))
+  .group('/notifications', (app) => app
+    .use(authMiddleware)
+    .get('/', (context) => notificationControllers.getUserNotifications(context))
+    .put('/:id/read', (context) => notificationControllers.markAsRead(context))
+  )

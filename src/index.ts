@@ -46,10 +46,12 @@ const app = new Elysia()
   })
   
   // API routes
-  .use(authRoutes)
-  .use(eventRoutes)
-  .use(rsvpRoutes)
-  .use(notificationRoutes)
+  .group('/api', (app) => app
+    .use(authRoutes)
+    .use(eventRoutes)
+    .use(rsvpRoutes)
+    .use(notificationRoutes)
+  )
   
   .get('/health', async () => {
     try {
