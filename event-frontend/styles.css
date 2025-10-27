@@ -11,6 +11,15 @@ body {
   padding: 20px;
   color: #333;
 }
+footer {
+  text-align: center;
+  padding: 15px 0;
+  background: #f1f1f1;
+  margin-top: 40px;
+  border-top: 1px solid #ddd;
+  color: #666;
+  border-radius: 5px;
+}
 
 .container {
   max-width: 1200px;
