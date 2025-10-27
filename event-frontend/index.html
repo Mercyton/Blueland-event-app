@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management App</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <h1>Blueland Event Management</h1>
+                <p>Create, Discover, and Attend Amazing Events</p>
+            </div>
+
+            <div class="header-right">
+                <div class="auth-section" id="authSection">
+                    <button id="loginBtn" class="btn btn-secondary">Login</button>
+                    <button id="signupBtn" class="btn btn-primary">Sign Up</button>
+                </div>
+
+                <div class="user-section" id="userSection" style="display: none;">
+                    <div class="user-info">
+                        <span id="userEmail"></span>
+                        <small>Role: <span id="userRole"></span></small>
+                    </div>
+                    <div class="notifications">
+                        <button id="notificationsBtn" class="btn btn-secondary">
+                            🔔 Notifications <span id="notificationsBadge" class="badge"></span>
+                        </button>
+                        <div id="notificationsDropdown" class="notifications-dropdown">
+                            <div id="notificationsList"></div>
+                        </div>
+                    </div>
+                    <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Role-based Action Buttons -->
+        <div class="action-buttons" id="actionButtons" style="display: none;">
+            <button id="createEventBtn" class="btn btn-primary" style="display: none;">Create Event</button>
+            <button id="suggestEventBtn" class="btn btn-warning" style="display: none;">Suggest Event</button>
+            <button id="viewPendingEventsBtn" class="btn btn-info" style="display: none;">View Pending Events</button>
+        </div>
+
+        <!-- Auth Modals -->
+        <div id="loginModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <input type="email" id="loginEmail" placeholder="Email" required>
+                    <input type="password" id="loginPassword" placeholder="Password" required>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="signupModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Sign Up</h2>
+                <form id="signupForm">
+                    <input type="email" id="signupEmail" placeholder="Email" required>
+                    <input type="password" id="signupPassword" placeholder="Password" required>
+                    <select id="signupRole">
+                        <option value="ATTENDEE">Attendee</option>
+                        <option value="ORGANIZER">Organizer</option>
+                        <option value="ADMIN">Admin</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Create Event Modal (Admin only) -->
+        <div id="createEventModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Create Event</h2>
+                <form id="createEventForm">
+                    <input type="text" id="eventTitle" placeholder="Event Title" required>
+                    <textarea id="eventDescription" placeholder="Event Description" required></textarea>
+                    <input type="datetime-local" id="eventDate" required>
+                    <input type="text" id="eventLocation" placeholder="Location" required>
+                    <input type="number" id="eventCapacity" placeholder="Capacity" value="100" min="1">
+                    <button type="submit" class="btn btn-primary">Create Event</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Suggest Event Modal (Organizer only) -->
+        <div id="suggestEventModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Suggest Event</h2>
+                <form id="suggestEventForm">
+                    <input type="text" id="suggestTitle" placeholder="Event Title" required>
+                    <textarea id="suggestDescription" placeholder="Event Description" required></textarea>
+                    <input type="datetime-local" id="suggestDate" required>
+                    <input type="text" id="suggestLocation" placeholder="Location" required>
+                    <input type="number" id="suggestCapacity" placeholder="Capacity" value="100" min="1">
+                    <button type="submit" class="btn btn-primary">Suggest Event</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Admin Panel -->
+        <section id="adminPanel" style="display: none;">
+            <h2>Admin Panel</h2>
+            <div class="admin-stats">
+                <div class="stat-card">
+                    <h3>Total Users</h3>
+                    <p id="totalUsersCount">--</p>
+                </div>
+            </div>
+            <div id="pendingEventsList" class="events-grid">
+                <!-- Pending events will be loaded here -->
+            </div>
+            <div id="userManagementSection">
+                <h2>User Management</h2>
+                <div id="userList" class="user-list">
+                    <!-- User list will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Events List -->
+        <section id="eventsSection">
+            <h2>📅 Upcoming Events</h2>
+            <div id="eventsList" class="events-grid">
+                <!-- Events will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <h2>Benefits of Using this Platform</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3> For Attendees</h3>
+                    <p>Discover amazing events, RSVP easily, and get automatic notifications</p>
+                </div>
+                <div class="feature-card">
+                    <h3> For Organizers</h3>
+                    <p>Suggest events to admins, get approval notifications, and grow your community</p>
+                </div>
+                <div class="feature-card">
+                    <h3> For Admins</h3>
+                    <p>Create events, approve suggestions, and manage the entire event ecosystem</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+
+</html>

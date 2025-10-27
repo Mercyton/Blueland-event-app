@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  ADMIN
+  ORGANIZER
+  ATTENDEE
+}
+
+enum RSVPStatus {
+  GOING
+  MAYBE
+  NOT_GOING
+}
+
+model User {
+  id              String         @id @default(uuid())
+  email           String         @unique
+  password        String
+  role            UserRole       @default(ATTENDEE)
+  createdAt       DateTime       @default(now())
+
+  organizedEvents Event[]        @relation("EventOrganizer")
+  rsvps           RSVP[]
+  notifications   Notification[]
+
+  @@map("users")
+}
+
+model Event {
+  id          String     @id @default(uuid())
+  title       String
+  description String
+  date        DateTime
+  location    String
+  capacity    Int        @default(100)
+  organizerId String
+  approved    Boolean    @default(false)
+  createdAt   DateTime   @default(now())
+
+  organizer   User       @relation("EventOrganizer", fields: [organizerId], references: [id], onDelete: Cascade)
+  rsvps       RSVP[]
+
+  @@map("events")
+}
+
+model RSVP {
+  id        String     @id @default(uuid())
+  userId    String
+  eventId   String
+  status    RSVPStatus
+  createdAt DateTime   @default(now())
+
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  event     Event      @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, eventId])
+  @@map("rsvps")
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  title     String
+  message   String
+  type      String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("notifications")
+}
