@@ -1,3 +1,4 @@
+databases: -name:event-db
 services:
   - type: web
     name: event-management-app
