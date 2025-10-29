@@ -9,6 +9,8 @@ A full-stack event management application built with Elysia.js, Bun, and Postgre
 - 📅 Event Management & RSVP System
 - 🔔 Real-time Notifications
 - 🎨 Modern Responsive UI
+  > event-management-app@1.0.0 dev
+  > bun --watch src/index.ts
 
 ## Tech Stack
 
@@ -45,14 +47,14 @@ This application is designed for deployment on [Render](https://render.com/) wit
 2. On the Render dashboard, create a new "Web Service".
 3. Connect your forked repository.
 4. Configure the service with the following settings:
-    - **Environment**: `Bun`
-    - **Build Command**: `bun install && npx prisma generate && npx prisma migrate deploy && npm run db:seed`
-    - **Start Command**: `npm start`
+   - **Environment**: `Bun`
+   - **Build Command**: `bun install && npx prisma generate && npx prisma migrate deploy && npm run db:seed`
+   - **Start Command**: `npm start`
 5. Add the following environment variables:
-    - `DATABASE_URL`: The pooled connection string from your Neon database.
-    - `ADMIN_EMAIL`: The email for the default admin user.
-    - `ADMIN_PASSWORD`: The password for the default admin user.
-    - `JWT_SECRET`: A secure, random string for signing JWTs.
+   - `DATABASE_URL`: The pooled connection string from your Neon database.
+   - `ADMIN_EMAIL`: The email for the default admin user.
+   - `ADMIN_PASSWORD`: The password for the default admin user.
+   - `JWT_SECRET`: A secure, random string for signing JWTs.
 6. Deploy the service. Your application will be live at the URL provided by Render.
 
 ## Design Principles
@@ -62,3 +64,16 @@ This application's architecture is an evolution of a previous event management s
 ### Singleton Pattern for Database Connection
 
 A notable example of this is the use of the singleton pattern for the `PrismaClient`. In `src/index.ts`, a single instance of the Prisma client is created and shared across the entire application. This approach ensures that a single, efficient connection pool is used to communicate with the database, preventing resource exhaustion and improving performance under load. This is a critical design choice for any database-driven application.
+
+=========================================
+🚀 Event Management App - FULL STACK READY!
+📍 Frontend: http://localhost:3000
+📚 API Docs: http://localhost:3000/docs
+❤️ Health: http://localhost:3000/health
+server: http://localhost:4000
+✅ FEATURES:
+🔐 Authentication & JWT
+📅 Event Management (Admin/Organizer/Attendee)
+✅ RSVP System
+🔔 Real-time Notifications
+🎨 Modern Frontend UI
