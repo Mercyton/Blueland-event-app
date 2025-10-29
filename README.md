@@ -31,7 +31,7 @@ API documentation is available at the `/docs` endpoint when the server is runnin
 
 ## Deployment
 
-This application is designed for deployment on [Render](https://render.com/) with a [Neon](https://neon.tech/) PostgreSQL database.
+This application is deployed on [Render](https://blueland-event-manager.onrender.com) and uses a [Neon](https://console.neon.tech/app/projects/lingering-grass-87171930?branchId=br-lucky-fire-afupuyk9) PostgreSQL database.
 
 ### Neon Database Setup
 
