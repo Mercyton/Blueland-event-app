@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Event Management App
 
 A full-stack event management application built with Elysia.js, Bun, and PostgreSQL.
@@ -21,15 +20,11 @@ A full-stack event management application built with Elysia.js, Bun, and Postgre
 ## Local Development
 
 1. Clone the repository
-2. Install dependencies: `npm install`
+2. Install dependencies: `bun install`
 3. Setup database: `npx prisma db push`
 4. Start development server: `npm run dev`
 5. Open http://localhost:3000
 
-## Deployment
+## API Documentation
 
-This app is deployed on Render and uses Neon PostgreSQL database.
-=======
-# event-management-
-Full-stack event management application with Elysia.js, Bun, and PostgreSQL
->>>>>>> 3916de8657f8099cffb9b75df5016b106f8e7000
+API documentation is available at the `/docs` endpoint when the server is running. You can access it at [http://localhost:3000/docs](http://localhost:3000/docs).
